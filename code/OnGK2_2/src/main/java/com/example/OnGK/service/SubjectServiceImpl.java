@@ -23,12 +23,11 @@ public class SubjectServiceImpl implements  SubjectService{
 
     @Override
     public List<Subject> getSubjects() {
-//        ResponseEntity<List<Subject>> responseEntity =
-//                restTemplate.exchange(crmRestUrl, HttpMethod.GET, null,
-//                        new ParameterizedTypeReference<List<Subject>>() {});
-//        List<Subject> subjects = responseEntity.getBody();
-//        return subjects;
-        return null;
+        ResponseEntity<List<Subject>> responseEntity =
+                restTemplate.exchange(crmRestUrl + "subjects", HttpMethod.GET, null,
+                        new ParameterizedTypeReference<List<Subject>>() {});
+        List<Subject> subjects = responseEntity.getBody();
+        return subjects;
     }
 
     @Override

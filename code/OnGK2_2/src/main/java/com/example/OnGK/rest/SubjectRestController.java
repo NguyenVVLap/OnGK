@@ -21,8 +21,8 @@ public class SubjectRestController {
         return subject;
     }
 
-//    @GetMapping("/subjects")
-//    public List<Subject> getSubjects() {
-//        return subjectService.getSubjects();
-//    }
+    @GetMapping("/subjects")
+    public List<Subject> getSubjects() {
+        return subjectService.getSubjects();
+    }
 }
