@@ -5,6 +5,8 @@ import com.example.OnGK.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SubjectServiceImpl implements  SubjectService{
     @Autowired
@@ -14,5 +16,10 @@ public class SubjectServiceImpl implements  SubjectService{
     @Override
     public Subject saveSubject(Subject subject) {
         return subjectRepository.save(subject);
+    }
+
+    @Override
+    public List<Subject> getSubjects() {
+        return subjectRepository.findAll();
     }
 }
