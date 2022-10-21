@@ -1,6 +1,7 @@
 package com.example.OnGK.rest;
 
 import com.example.OnGK.model.Subject;
+import com.example.OnGK.service.ListenService;
 import com.example.OnGK.service.SendService;
 import com.example.OnGK.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class SubjectRestController {
 
     @Autowired
     private SendService sendService;
+
+    @Autowired
+    private ListenService listenService;
 
     @PostMapping("/subject")
     public Subject addSubject(@RequestBody Subject subject) {
@@ -38,5 +42,12 @@ public class SubjectRestController {
         if (subj != null)
             sendService.SendProduct(subj);
         return subj;
+    }
+
+    @GetMapping("receiveSubject")
+    public Subject receiveSubject() {
+
+
+        return listenService.receiveProduct();
     }
 }
