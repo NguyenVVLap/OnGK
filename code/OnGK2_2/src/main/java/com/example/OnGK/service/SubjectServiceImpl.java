@@ -15,7 +15,7 @@ public class SubjectServiceImpl implements  SubjectService{
 
 
     private RestTemplate restTemplate;
-    private String crmRestUrl = "http://localhost:8080/";
+    private String crmRestUrl = "http://host.docker.internal:8080/";
 
     public SubjectServiceImpl() {
         this.restTemplate = new RestTemplate();
