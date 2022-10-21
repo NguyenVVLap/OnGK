@@ -1,12 +1,10 @@
 package com.example.OnGK.rest;
 
 import com.example.OnGK.model.Subject;
+import com.example.OnGK.service.SendService;
 import com.example.OnGK.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,6 +12,9 @@ import java.util.List;
 public class SubjectRestController {
     @Autowired
     private SubjectService subjectService;
+
+    @Autowired
+    private SendService sendService;
 
     @PostMapping("/subject")
     public Subject addSubject(@RequestBody Subject subject) {
@@ -24,5 +25,18 @@ public class SubjectRestController {
     @GetMapping("/subjects")
     public List<Subject> getSubjects() {
         return subjectService.getSubjects();
+    }
+
+    @PostMapping("sendSubject/{id}")
+    public Subject sendSubject(@PathVariable int id) {
+        Subject subj = null;
+        for (Subject sub : subjectService.getSubjects() ) {
+            if (sub.getSubId() == id) {
+                subj = sub;
+            }
+        }
+        if (subj != null)
+            sendService.SendProduct(subj);
+        return subj;
     }
 }
